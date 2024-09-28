@@ -1,0 +1,65 @@
+/* styles.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+.gallery {
+    padding: 1rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    grid-gap: 1rem; /* Space between grid items */
+}
+
+figure {
+    margin: 0;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+figcaption {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Media Queries for Responsive Design */
+@media (min-width: 601px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
+    }
+}
+
+@media (min-width: 1025px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* Three columns for desktops */
+    }
+}

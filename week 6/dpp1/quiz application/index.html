@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Quiz</title>
+</head>
+<body>
+    <h1>Simple Quiz Application</h1>
+
+    <script>
+        // JavaScript code for the quiz
+        const question1 = "What is the square root of 144?";
+        const answer1 = 12;
+        const question2 = "Who wrote 'Hamlet'?";
+        const answer2 = "shakespeare";
+        const question3 = "Is the Earth a perfect sphere? (yes/no)";
+        const answer3 = "no";
+
+        // Initialize score
+        let score = 0;
+
+        // Question 1
+        let userAnswer1 = Number(prompt(question1));
+        if (userAnswer1 === answer1) {
+            score++;
+        }
+
+        // Question 2
+        let userAnswer2 = prompt(question2).toLowerCase();
+        if (userAnswer2 === answer2) {
+            score++;
+        }
+
+        // Question 3
+        let userAnswer3 = prompt(question3).toLowerCase();
+        if (userAnswer3 === answer3) {
+            score++;
+        }
+
+        // Calculate percentage score
+        const totalQuestions = 3;
+        const percentageScore = (score / totalQuestions) * 100;
+
+        // Use bitwise OR to round down the percentage score
+        const roundedScore = percentageScore | 0;
+
+        // Prepare result message
+        let resultMessage = "Quiz Results:\n\n";
+        resultMessage += "Questions answered correctly: " + score + " out of " + totalQuestions + "\n";
+        resultMessage += "Your score: " + roundedScore + "%\n\n";
+
+        // Evaluate performance using logical operators and conditional statements
+        if (score === totalQuestions) {
+            resultMessage += "Excellent! You got all questions right!";
+        } else if (score > 0 && score < totalQuestions) {
+            resultMessage += "Good job! You got some questions right.";
+        } else if (score === 0) {
+            resultMessage += "Keep practicing! You'll do better next time.";
+        }
+
+        // Display final result
+        alert(resultMessage);
+    </script>
+</body>
+</html>

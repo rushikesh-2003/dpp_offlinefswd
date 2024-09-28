@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationery Items Inventory Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            margin: 5px;
+        }
+        #inventory {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        #inventory li {
+            padding: 5px;
+            background: #f1f1f1;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Stationery Inventory Management</h1>
+
+    <button id="addItem">Add Item</button>
+    <button id="removeLastItem">Remove Last Item</button>
+    <button id="removeFirstItem">Remove First Item</button>
+    <button id="addItemToBeginning">Add Item to Beginning</button>
+    <button id="reverseInventory">Reverse Inventory</button>
+    <button id="sortInventory">Sort Inventory</button>
+    <button id="deleteItem">Delete Item by Index</button>
+
+    <h2>Inventory:</h2>
+    <ul id="inventory"></ul>
+
+    <script>
+        // Initialize an inventory array with some items
+        let inventory = ['Pen', 'Notebook', 'Eraser', 'Marker', 'Stapler'];
+
+        // Function to display the current inventory
+        function displayInventory() {
+            const inventoryList = document.getElementById('inventory');
+            inventoryList.innerHTML = '';
+            inventory.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${item}`;
+                inventoryList.appendChild(li);
+            });
+        }
+
+        // Function to add items to the inventory
+        function addItem(newItem) {
+            inventory.push(newItem);
+            alert(`${newItem} has been added to the inventory.`);
+            displayInventory();
+        }
+
+        // Function to remove the last item from the inventory
+        function removeLastItem() {
+            if (inventory.length > 0) {
+                const removedItem = inventory.pop();
+                alert(`${removedItem} has been removed from the inventory.`);
+                displayInventory();
+            } else {
+                alert('The inventory is already empty.');
+            }
+        }
+
+        // Function to remove the first item from the inventory
+        function removeFirstItem() {
+            if (inventory.length > 0) {
+                const removedItem = inventory.shift();
+                alert(`${removedItem} has been removed from the inventory.`);
+                displayInventory();
+            } else {
+                alert('The inventory is already empty.');
+            }
+        }
+
+        // Function to add items to the beginning of the inventory
+        function addItemToBeginning(newItem) {
+            inventory.unshift(newItem);
+            alert(`${newItem} has been added to the beginning of the inventory.`);
+            displayInventory();
+        }
+
+        // Function to reverse the inventory order
+        function reverseInventory() {
+            inventory.reverse();
+            alert('Inventory has been reversed.');
+            displayInventory();
+        }
+
+        // Function to sort the inventory alphabetically
+        function sortInventory() {
+            inventory.sort();
+            alert('Inventory has been sorted alphabetically.');
+            displayInventory();
+        }
+
+        // Function to delete an item by index
+        function deleteItemByIndex(index) {
+            if (index >= 0 && index < inventory.length) {
+                delete inventory[index];
+                alert(`Item at index ${index + 1} has been deleted.`);
+                displayInventory();
+            } else {
+                alert('Invalid index. No item deleted.');
+            }
+        }
+
+        // Event Listeners for buttons
+        document.getElementById('addItem').addEventListener('click', function() {
+            const newItem = prompt('Enter the name of the new item:');
+            if (newItem) addItem(newItem);
+        });
+
+        document.getElementById('removeLastItem').addEventListener('click', removeLastItem);
+
+        document.getElementById('removeFirstItem').addEventListener('click', removeFirstItem);
+
+        document.getElementById('addItemToBeginning').addEventListener('click', function() {
+            const newItem = prompt('Enter the name of the new item to add at the beginning:');
+            if (newItem) addItemToBeginning(newItem);
+        });
+
+        document.getElementById('reverseInventory').addEventListener('click', reverseInventory);
+
+        document.getElementById('sortInventory').addEventListener('click', sortInventory);
+
+        document.getElementById('deleteItem').addEventListener('click', function() {
+            const index = prompt('Enter the index of the item to delete (1-based):');
+            if (index) deleteItemByIndex(Number(index) - 1);
+        });
+
+        // Initial display of inventory
+        displayInventory();
+    </script>
+
+</body>
+</html>

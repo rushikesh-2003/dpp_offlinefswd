@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Book Tracker</h1>
+    <button id="startTracking">Start Tracking</button>
+    <div id="output"></div>
+
+    <script>
+        // Initialize arrays to store book titles and their statuses
+        let books = [];
+        let statuses = [];
+
+        // Function to display all books and their statuses
+        function displayBooks() {
+            let output = "<h3>Library Book Tracker:</h3>";
+            for (let i = 0; i < books.length; i++) {
+                output += `<p>${books[i]}: ${statuses[i]}</p>`;
+            }
+            document.getElementById("output").innerHTML = output;
+        }
+
+        // Start tracking button event listener
+        document.getElementById("startTracking").addEventListener("click", function() {
+            // Prompt user for the number of books
+            let numberOfBooks = prompt("How many books do you want to track?");
+            numberOfBooks = Number(numberOfBooks);
+
+            // Use a for loop to collect book titles and initialize their statuses
+            for (let i = 0; i < numberOfBooks; i++) {
+                let bookTitle = prompt(`Enter the title of book ${i + 1}:`);
+                books.push(bookTitle);
+                statuses.push("Available"); // Initialize each book as 'Available'
+            }
+
+            // Display initial list of books
+            displayBooks();
+
+            // Start the borrow/return loop
+            let action = prompt("Do you want to borrow or return a book? (borrow/return/exit)");
+            while (action !== "exit") {
+                let bookTitle = prompt("Enter the title of the book:");
+                let found = false;
+
+                // Use a for loop to find the book and update its status
+                for (let i = 0; i < books.length; i++) {
+                    if (books[i] === bookTitle) {
+                        found = true;
+                        if (action === "borrow" && statuses[i] === "Available") {
+                            statuses[i] = "Borrowed";
+                            alert(`${bookTitle} has been borrowed.`);
+                        } else if (action === "return" && statuses[i] === "Borrowed") {
+                            statuses[i] = "Available";
+                            alert(`${bookTitle} has been returned.`);
+                        } else {
+                            alert(`Invalid action or the book is already in the desired state.`);
+                        }
+                        break; // Exit the for loop once the book is found
+                    }
+                }
+
+                if (!found) {
+                    alert("Book not found.");
+                }
+
+                // Display the updated list of books and statuses
+                displayBooks();
+
+                // Ask the user if they want to perform another action
+                action = prompt("Do you want to borrow or return another book? (borrow/return/exit)");
+            }
+
+            // Final display of book statuses using a do-while loop
+            let index = 0;
+            let finalOutput = "<h3>Final Library Book Tracker:</h3>";
+            do {
+                finalOutput += `<p>${books[index]}: ${statuses[index]}</p>`;
+                index++;
+            } while (index < books.length);
+
+            document.getElementById("output").innerHTML = finalOutput;
+        });
+    </script>
+</body>
+</html>
