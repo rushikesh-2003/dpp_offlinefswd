@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Availability List</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    #product-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .product-item {
+      background-color: #fff;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .product-name {
+      font-weight: bold;
+    }
+    .stock-status {
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .in-stock {
+      background-color: #2ecc71;
+      color: #fff;
+    }
+    .out-of-stock {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+    #controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+    button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body onload="renderProductList()">
+  <h1>Product Availability List</h1>
+  <ul id="product-list"></ul>
+  <div id="controls">
+    <button onclick="addRandomProduct()">Add Random Product</button>
+    <button onclick="toggleAllStatuses()">Toggle All Statuses</button>
+  </div>
+
+  <script>
+    // Initial product list
+    const products = [
+      { name: "Laptop", inStock: true },
+      { name: "Smartphone", inStock: false },
+      { name: "Headphones", inStock: true },
+      { name: "Tablet", inStock: false },
+      { name: "Smart Watch", inStock: true }
+    ];
+
+    // Create a product item in the list
+    function createProductItem(product) {
+      const li = document.createElement('li');
+      li.className = 'product-item';
+      li.innerHTML = `
+        <span class="product-name">${product.name}</span>
+        <span class="stock-status ${product.inStock ? 'in-stock' : 'out-of-stock'}" onclick="toggleStockStatus(this)">
+          ${product.inStock ? 'In Stock' : 'Out of Stock'}
+        </span>
+      `;
+      return li;
+    }
+
+    // Render the entire product list
+    function renderProductList() {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';  // Clear the existing list
+      products.forEach(product => {
+        productList.appendChild(createProductItem(product));
+      });
+    }
+
+    // Toggle stock status for a specific product
+    function toggleStockStatus(element) {
+      element.classList.toggle('in-stock');
+      element.classList.toggle('out-of-stock');
+      element.textContent = element.classList.contains('in-stock') ? 'In Stock' : 'Out of Stock';
+    }
+
+    // Add a random product to the list
+    function addRandomProduct() {
+      const randomProducts = [
+        "Camera", "Keyboard", "Mouse", "Monitor", "Printer", "Speakers", "Microphone", "Webcam", "External Hard Drive", "USB Drive"
+      ];
+      const randomName = randomProducts[Math.floor(Math.random() * randomProducts.length)];
+      const randomStock = Math.random() < 0.5;  // Random stock status (true/false)
+      products.push({ name: randomName, inStock: randomStock });
+      renderProductList();  // Re-render the product list
+    }
+
+    // Toggle stock status for all products
+    function toggleAllStatuses() {
+      const statuses = document.getElementsByClassName('stock-status');
+      for (let i = 0; i < statuses.length; i++) {
+        toggleStockStatus(statuses[i]);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bollywood Movie Collection Organizer</title>
+</head>
+<body>
+  <h1>Bollywood Movie Collection Organizer</h1>
+  <button onclick="runMovieOrganizer()">Organize Movies</button>
+
+  <script>
+    // Initialize Bollywood Movie Arrays
+    let actionMovies = ['Sholay', 'Dhoom', 'Singham'];
+    let dramaMovies = ['Kabhi Khushi Kabhie Gham', '3 Idiots', 'Dilwale Dulhania Le Jayenge'];
+    let movieYears = [1975, 2004, 2011, 2001, 2009, 1995];
+
+    // Merge Arrays
+    function mergeMovies(arr1, arr2) {
+      let merged = arr1.concat(arr2);
+      console.log('All Movies:', merged);
+      return merged;
+    }
+
+    // Sort Arrays
+    function sortMovies(movies) {
+      let sorted = [...movies].sort();
+      console.log('Sorted Movies:', sorted);
+      return sorted;
+    }
+
+    function sortYears(years) {
+      let sorted = [...years].sort((a, b) => a - b);
+      console.log('Sorted Movie Years:', sorted);
+      return sorted;
+    }
+
+    // Display Movies
+    function displayMovies(movies) {
+      console.log('Movie Titles:');
+      movies.forEach((movie) => console.log(movie));
+    }
+
+    // Uppercase Movie Titles
+    function getUppercaseMovies(movies) {
+      let uppercase = movies.map((movie) => movie.toUpperCase());
+      console.log('Uppercase Movies:', uppercase);
+      return uppercase;
+    }
+
+    // Filter Movies Containing 'The'
+    function getMoviesWithThe(movies) {
+      let withThe = movies.filter((movie) => movie.includes('The'));
+      console.log("Movies with 'The':", withThe);
+      return withThe;
+    }
+
+    // Calculate Total Length of All Titles
+    function getTotalTitleLength(movies) {
+      let total = movies.reduce((sum, movie) => sum + movie.length, 0);
+      console.log('Total Length of All Movie Titles:', total);
+      return total;
+    }
+
+    // Concatenate Titles from Right to Left
+    function getConcatenatedTitles(movies) {
+      let concatenated = movies.reduceRight((acc, movie) => acc + ' ' + movie, '').trim();
+      console.log('Concatenated Titles from Right to Left:', concatenated);
+      return concatenated;
+    }
+
+    // Check All Movies Contain 'e'
+    function checkAllMoviesContainE(movies) {
+      let allContainE = movies.every((movie) => movie.toLowerCase().includes('e'));
+      console.log("All movies contain 'e':", allContainE);
+      return allContainE;
+    }
+
+    // Check Any Movie Contains 'e'
+    function checkAnyMovieContainsE(movies) {
+      let someContainE = movies.some((movie) => movie.toLowerCase().includes('e'));
+      console.log("At least one movie contains 'e':", someContainE);
+      return someContainE;
+    }
+
+    // Find Index of a Movie
+    function findMovieIndex(movies, title) {
+      let index = movies.indexOf(title);
+      console.log(`Index of '${title}':`, index);
+      return index;
+    }
+
+    // Find Last Index of a Movie
+    function findLastMovieIndex(movies, title) {
+      let lastIndex = movies.lastIndexOf(title);
+      console.log(`Last Index of '${title}':`, lastIndex);
+      return lastIndex;
+    }
+
+    // Find First Long Title Movie
+    function findLongTitleMovie(movies) {
+      let longTitle = movies.find((movie) => movie.length > 10);
+      console.log('First movie with a title longer than 10 characters:', longTitle);
+      return longTitle;
+    }
+
+    // Find Index of First Long Title Movie
+    function findLongTitleMovieIndex(movies) {
+      let index = movies.findIndex((movie) => movie.length > 10);
+      console.log('Index of first movie with a title longer than 10 characters:', index);
+      return index;
+    }
+
+    // Check Movie Inclusion
+    function checkMovieInclusion(movies, title) {
+      let included = movies.includes(title);
+      console.log(`Array includes '${title}':`, included);
+      return included;
+    }
+
+    // Main execution function
+    function runMovieOrganizer() {
+      let allMovies = mergeMovies(actionMovies, dramaMovies);
+      let sortedMovies = sortMovies(allMovies);
+      sortYears(movieYears);
+      displayMovies(allMovies);
+      getUppercaseMovies(allMovies);
+      getMoviesWithThe(allMovies);
+      getTotalTitleLength(allMovies);
+      getConcatenatedTitles(allMovies);
+      checkAllMoviesContainE(allMovies);
+      checkAnyMovieContainsE(allMovies);
+      findMovieIndex(allMovies, 'Singham');
+      allMovies.push('Singham'); // Add duplicate for demonstration
+      findLastMovieIndex(allMovies, 'Singham');
+      findLongTitleMovie(allMovies);
+      findLongTitleMovieIndex(allMovies);
+      checkMovieInclusion(allMovies, 'Sholay');
+    }
+  </script>
+</body>
+</html>

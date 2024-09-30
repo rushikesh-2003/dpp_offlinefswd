@@ -35,7 +35,7 @@ figure {
 
 img {
     width: 100%;
-    height: auto;
+    height: 500px;
     display: block;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -48,7 +48,7 @@ img:hover {
 figcaption {
     text-align: center;
     margin-top: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 /* Media Queries for Responsive Design */

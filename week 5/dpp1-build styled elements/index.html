@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Elements: Buttons and Accordions</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Buttons Section -->
+    <section>
+        <h2>Buttons</h2>
+        <button class="btn btn-primary">Primary Button</button>
+        <button class="btn btn-secondary">Secondary Button</button>
+        <button class="btn btn-danger">Danger Button</button>
+    </section>
+
+    <!-- Accordions Section -->
+    <section class="accordion">
+        <h2>Accordion</h2>
+        <div class="accordion-item">
+            <div class="accordion-header">Accordion Item 1</div>
+            <div class="accordion-content">
+                <p>This is the content for Accordion Item 1. It expands when clicked.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">Accordion Item 2</div>
+            <div class="accordion-content">
+                <p>This is the content for Accordion Item 2. It expands when clicked.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">Accordion Item 3</div>
+            <div class="accordion-content">
+                <p>This is the content for Accordion Item 3. It expands when clicked.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript for Accordion Functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+                const content = item.querySelector('.accordion-content');
+                content.style.display = item.classList.contains('active') ? 'block' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

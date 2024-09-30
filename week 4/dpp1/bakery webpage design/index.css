@@ -13,7 +13,12 @@ header, footer, main {
 
 header {
     background-color: #f4d03f;
+    height:auto;
 }
+
+
+
+
 
 footer {
     background-color: #e59866;
@@ -22,15 +27,16 @@ footer {
 
 nav ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     list-style: none;
     padding: 0;
+
 }
 
 nav a {
-    text-decoration: none;
+    text-decoration:none;
     color: #333;
-    font-size: 18px;
+    font-size: 35px;
 }
 
 main {
@@ -48,7 +54,7 @@ main {
 }
 
 .item img {
-    float: left;
+    float: middle;
     margin-right: 20px;
     width: 200px;
 }
@@ -77,3 +83,14 @@ p {
     font-size: 16px;
     line-height: 1.5;
 }
+.logo img {
+    width: 125px; 
+    height: 120px;
+    display: flex;
+    margin: 2px; 
+    padding-right: 1200px;
+    padding-block-start: 50px;
+    padding-top: 120px;
+}
+
+
